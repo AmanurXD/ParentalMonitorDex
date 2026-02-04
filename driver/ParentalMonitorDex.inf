@@ -1,0 +1,38 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider="ParentalMonitorDex"
+DriverVer=02/03/2026,1.0.0.0
+CatalogFile=ParentalMonitorDex.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%DeviceName% = DriverInstall, Root\PARENTALMONITORDEX
+
+[DriverInstall.NT]
+CopyFiles = DriverCopyFiles
+
+[DriverInstall.NT.Services]
+AddService = ParentalMonitorDex, 0x00000002, ServiceInstall
+
+[DriverCopyFiles]
+ParentalMonitorDex.sys
+
+[ServiceInstall]
+DisplayName    = %ServiceName%
+ServiceType    = 1  ; SERVICE_KERNEL_DRIVER
+StartType      = 2  ; SERVICE_AUTO_START
+ErrorControl   = 1  ; normal
+ServiceBinary  = %12%\ParentalMonitorDex.sys
+LoadOrderGroup = Base
+
+[Strings]
+ManufacturerName="ParentalMonitorDex"
+DeviceName="ParentalMonitorDex Device"
+ServiceName="ParentalMonitorDex"
